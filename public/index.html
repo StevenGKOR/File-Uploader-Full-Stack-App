@@ -4,38 +4,41 @@
  <meta charset="UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <!-- title -->
+
  <title>File Upload</title>
- <!-- normalize css -->
+
  <link rel="stylesheet" href="./normalize.css">
- <!-- styles css -->
+
  <link rel="stylesheet" href="./styles.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
  <form class="form file-form">
   <h4>File Upload</h4>
-  <!-- single row -->
+
   <div class="form-row">
    <label for="name" class="form-label">Name</label>
-   <input type="text" id="name" class="form-input" value="computer">
+   <input type="text" id="name" class="form-input">
   </div>
-  <!-- end of single row -->
-  <!-- single row -->
+
   <div class="form-row">
    <label for="price" class="form-label">Price</label>
-   <input type="number" id="price" class="form-input" value="150.99">
+   <input type="number" id="price" class="form-input">
   </div>
-  <!-- end of single row -->
-  <!-- single row -->
+
   <div class="form-row">
    <label for="image" class="form-label">Image</label>
    <input type="file" id="image" accept="image/*" >
   </div>
-  <!-- end of single row -->
+
   
    <button type="submit" class="btn btn-block">add product</button>
   </div>
   </form>
+  <div class="error-wrapper">
+
+  </div>
+
 <section class="container">
 </section>
 

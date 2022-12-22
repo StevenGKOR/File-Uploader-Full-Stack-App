@@ -1,5 +1,7 @@
 const url = '/api/v1/products'
 const fileFormDOM = document.querySelector('.file-form')
+const btnSub = document.querySelector('.btn')
+const errorWrapper = document.querySelector('.error-wrapper')
 
 const nameInputDOM = document.querySelector('#name')
 const priceInputDOM = document.querySelector('#price')
@@ -18,6 +20,7 @@ imageInputDOM.addEventListener('change', async (e) => {
   const formData = new FormData()
   formData.append('image', imageFile)
   try {
+    errorWrapper.innerHTML = ``
     const {
       data: {
         image: { src },
@@ -29,8 +32,10 @@ imageInputDOM.addEventListener('change', async (e) => {
     })
     imageValue = src
   } catch (error) {
-    imageValue = null
-    console.log(error)
+    errorWrapper.innerHTML = ` <div class="error-section">Oops... Something went wrong, please try again</div>`
+    setTimeout(() => {
+      errorWrapper.innerHTML = ``
+    }, 4000)
   }
 })
 
@@ -38,13 +43,24 @@ fileFormDOM.addEventListener('submit', async (e) => {
   e.preventDefault()
   const nameValue = nameInputDOM.value
   const priceValue = priceInputDOM.value
+  btnSub.setAttribute('disabled', '')
+  btnSub.innerHTML = `<i class="fa fa-circle-o-notch fa-spin"></i>`
   try {
+    errorWrapper.innerHTML = ``
     const product = { name: nameValue, price: priceValue, image: imageValue }
-
     await axios.post(url, product)
-    fetchProducts()
+
+    await fetchProducts()
+
+    btnSub.innerHTML = 'Add Product'
+    btnSub.removeAttribute('disabled')
   } catch (error) {
-    console.log(error)
+    errorWrapper.innerHTML = ` <div class="error-section">Oops... Something went wrong, please try again</div>`
+    btnSub.innerHTML = 'Add Product'
+    btnSub.removeAttribute('disabled')
+    setTimeout(() => {
+      errorWrapper.innerHTML = ``
+    }, 4000)
   }
 })
 
