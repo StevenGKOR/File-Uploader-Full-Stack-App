@@ -17,7 +17,7 @@ let imageValue
 
 imageInputDOM.addEventListener('change', async (e) => {
   const imageFile = e.target.files[0]
-  if (e.target.files.length) e.target.files.shift()
+  if (e.target.files && e.target.files.length) e.target.files.shift()
 
   const formData = new FormData()
   formData.append('image', imageFile)
@@ -47,7 +47,7 @@ fileFormDOM.addEventListener('submit', async (e) => {
   const priceValue = priceInputDOM.value
   btnSub.setAttribute('disabled', '')
   btnSub.innerHTML = `<i class="fa fa-circle-o-notch fa-spin"></i>`
-  if (e.target.files.length) e.target.files.shift()
+  if (e.target.files && e.target.files.length) e.target.files.shift()
   try {
     errorWrapper.innerHTML = ``
     const product = { name: nameValue, price: priceValue, image: imageValue }
